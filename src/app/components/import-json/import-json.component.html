@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>Importer un fichier JSON</h2>
+
+  <!-- Sélection du fichier -->
+  <input type="file" (change)="onFileSelected($event)" accept=".json" />
+
+  <!-- Affichage des données JSON importées -->
+  <div *ngIf="jsonData">
+    <h3>Données JSON importées : {{all_runes.length}}</h3>
+    <pre>{{ all_runes | json }}</pre>
+  </div>
+</div>
