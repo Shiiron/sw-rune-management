@@ -1,4 +1,4 @@
-export const StatEffect: {[key: number]: string} = {
+export const statEffect: {[key: number]: string} = {
   0: '',
   1: 'HP flat',
   2: 'HP%',

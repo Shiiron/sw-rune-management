@@ -1,0 +1,9 @@
+<div class="rune-container">
+  <div class="rune">
+    <p>{{rune.main_stat.value}} {{rune.main_stat.label}}</p>
+    <p>Préfix</p>
+    @for(stat of rune.secondary_stats; track rune.secondary_stats) {
+      <p>{{stat.value}} {{stat.label}}</p>
+    }
+  </div>
+</div>

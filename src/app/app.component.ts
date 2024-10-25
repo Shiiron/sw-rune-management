@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectRunes } from './state/rune.selectors';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'rune-management';
+  runes$ = this.store.select(selectRunes);
+
+  constructor(private store: Store){}
 }

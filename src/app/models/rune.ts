@@ -1,20 +1,17 @@
-export interface Rune {
-  rune_id: number // id de la rune
-  occupied_id: number // 0: non équipé, si > 0: id du monstre équipé
-  slot_no: number // Slot de la rune (de 1 a 6)
-  rank: number // Rareté de la rune (1 blanc, 2 vert, 3 bleu, 4 violet, 5 leg)
-  class: number // Nombre d'étoile
-  set_id: number // set de la rune (vio, energy etc...)
-  upgrade_curr: number // niveau d'upgrade actuel de la rune (max 15)
-  pri_eff: number[] // Stat principal
-  prefix_eff: number[] // Stat innate
-  sec_eff: [number[]?, number[]?, number[]?, number[]?]
-  extra: number // Rareté base de la rune. une rune + 12 sera toujours legendaire mais de base peut etre bleu
+import { LabelEntity } from "./labelEntity"
+import { ValueEntity } from "./valueEntity"
 
+export class Rune {
   id: number;
-  equipped_id: number;
-  slot: 1 | 2 | 3 | 4 | 5 | 6;
+  equipped_monster_id: number;
+  slot_no: 1 | 2 | 3 | 4 | 5 | 6;
   stars: 1 | 2 | 3 | 4 | 5 | 6;
-  set: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 5 | 6; 
-
+  set: LabelEntity;
+  main_stat: ValueEntity;
+  prefix_stat: ValueEntity;
+  secondary_stats: ValueEntity[];
+  base_rarity: 'common' | 'magic' | 'rare' | 'heroic' | 'legendary';
+  current_uprade: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+  efficence?: number; // nombre en % issue d'un calcul pour déterminé l'efficience de la rune
+  proc_efficence?: number; // number compris entre 0 et 8 qui donne le niveau d'efficience des procs de la rune (O = blanc, 8 = leg)
 }

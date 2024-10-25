@@ -1,4 +1,4 @@
-export const RuneSets: {[key: number]: string} = {
+export const runeSets: {[key: number]: string} = {
   1: 'Energy',
   2: 'Guard',
   3: 'Swift',

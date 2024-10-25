@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import { runeSets } from 'src/app/enums/rune-set';
+import { statEffect } from 'src/app/enums/stat-effect';
+import { Rune } from 'src/app/models/rune';
+import { SwRune } from 'src/app/models/sw-rune';
+import { Store } from '@ngrx/store';
+import { RuneActions } from 'src/app/state/rune.actions';
 
 @Component({
   selector: 'app-import-json',
@@ -6,13 +12,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./import-json.component.scss']
 })
 export class ImportJsonComponent {
-
   jsonData: any = null;
-  free_runes: any;
-  equipped_runes: any;
-  all_runes: any;
+  free_runes: SwRune[];
+  all_runes: Rune[];
 
-  // Méthode déclenchée lorsque l'utilisateur sélectionne un fichier
+  constructor(private store: Store) {}
+
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
 
@@ -28,8 +33,40 @@ export class ImportJsonComponent {
           try {
             this.jsonData = JSON.parse(e.target.result);
             this.free_runes = this.jsonData["runes"];
-            this.equipped_runes = this.getEquippedRunes(this.jsonData["unit_list"]);
-            this.all_runes = [...this.free_runes, ...this.equipped_runes];
+            this.all_runes = [...this.free_runes, ...this.getEquippedRunes(this.jsonData["unit_list"])].map((rune: SwRune) => {
+              return {
+                id: rune.rune_id,
+                equipped_monster_id: rune.occupied_id,
+                slot_no: rune.slot_no,
+                stars: rune.class,
+                set: {
+                  id: rune.set_id,
+                  label: runeSets[rune.set_id]
+                },
+                main_stat: {
+                  id: rune.pri_eff[0],
+                  label: statEffect[rune.pri_eff[1]],
+                  value: rune.pri_eff[1]
+                },
+                prefix_stat: {
+                  id: rune.pri_eff[0],
+                  label: statEffect[rune.pri_eff[1]],
+                  value: rune.pri_eff[1]
+                },
+                secondary_stats: rune.sec_eff.map(stat => {
+                  return {
+                    id: stat[0],
+                    label: statEffect[stat[1]],
+                    value: stat[1]
+                  }
+                })
+                ,
+                base_rarity: 'common',
+                current_uprade: 0
+              }
+            });
+
+            this.store.dispatch(RuneActions.load({runes: this.all_runes}));
           } catch (error) {
             console.error('Erreur de parsing du JSON:', error);
           }
