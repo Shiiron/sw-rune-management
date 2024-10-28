@@ -45,18 +45,18 @@ export class ImportJsonComponent {
                 },
                 main_stat: {
                   id: rune.pri_eff[0],
-                  label: statEffect[rune.pri_eff[1]],
+                  label: statEffect[rune.pri_eff[0]],
                   value: rune.pri_eff[1]
                 },
                 prefix_stat: {
                   id: rune.pri_eff[0],
-                  label: statEffect[rune.pri_eff[1]],
+                  label: statEffect[rune.pri_eff[0]],
                   value: rune.pri_eff[1]
                 },
                 secondary_stats: rune.sec_eff.map(stat => {
                   return {
                     id: stat[0],
-                    label: statEffect[stat[1]],
+                    label: statEffect[stat[0]],
                     value: stat[1]
                   }
                 })

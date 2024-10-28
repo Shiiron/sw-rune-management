@@ -1,9 +1,8 @@
 .rune-container {
-  display: grid;
   border: 3px solid black;
 }
 
 .rune {
-  display: flex;
+  display: grid;
   gap: 2rem;
 }
