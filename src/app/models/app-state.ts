@@ -1,4 +1,4 @@
-import { Rune } from "../models/rune";
+import { Rune } from "./rune";
 
 export interface AppState {
   runes: Rune[]

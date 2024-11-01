@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Rune } from 'src/app/models/rune';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-rune',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule],
   templateUrl: './rune.component.html',
   styleUrl: './rune.component.scss'
 })

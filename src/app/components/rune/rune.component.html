@@ -1,9 +1,27 @@
-<div class="rune-container">
+<article class="rune-container">
+  <div class="rune-header"></div>
+  <div class="rune-stats"></div>
+  <div class="rune-footer"></div>
+
   <div class="rune">
-    <p>{{rune.main_stat.value}} {{rune.main_stat.label}}</p>
-    <p>Préfix : {{rune.prefix_stat.value}} {{rune.prefix_stat.label}}</p>
+    <p>+{{rune.current_uprade}} {{rune.set.label}} ({{rune.slot_no}})</p>
+    <p>{{rune.main_stat.label}} +{{rune.main_stat.value}}</p>
+
     @for(stat of rune.secondary_stats; track stat) {
-      <p>{{stat.label}} +{{stat.value}} (id: {{stat.id}})</p>
+      <p>{{stat.label}} +{{stat.value}}</p>
     }
   </div>
-</div>
+</article>
+
+<mat-card>
+  <mat-card-title>
+    <mat-card-title></mat-card-title>
+    <mat-card-subtitle>
+      @if (rune.prefix_stat.id > 0) {
+        <p class="italic">{{rune.prefix_stat.value}} {{rune.prefix_stat.label}}</p>
+      }
+    </mat-card-subtitle>
+  </mat-card-title>
+  <mat-card-content></mat-card-content>
+  <mat-card-footer></mat-card-footer>
+</mat-card>

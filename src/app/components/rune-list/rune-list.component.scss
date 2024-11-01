@@ -1,5 +1,7 @@
 #rune-list {
   display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(6, 1fr);
+  gap: 4rem;
+  grid-template-columns: repeat(6, max-content);
+  align-items: center;
+  justify-content: center;
 }

@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { runeReducer } from './state/rune.reducer';
 import { collectionReducer } from './state/collection.reducer';
 import { RuneListComponent } from "./components/rune-list/rune-list.component";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { RuneListComponent } from "./components/rune-list/rune-list.component";
     StoreModule.forRoot({ runes: runeReducer, collection: collectionReducer }),
     RuneListComponent
 ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,6 +5,7 @@ import { Rune } from 'src/app/models/rune';
 import { SwRune } from 'src/app/models/sw-rune';
 import { Store } from '@ngrx/store';
 import { RuneActions } from 'src/app/state/rune.actions';
+import { runeRank } from 'src/app/enums/rune-rank';
 
 @Component({
   selector: 'app-import-json',
@@ -39,6 +40,8 @@ export class ImportJsonComponent {
                 equipped_monster_id: rune.occupied_id,
                 slot_no: rune.slot_no,
                 stars: rune.class,
+                base_rarity: runeRank[rune.rank],
+                current_uprade: rune.upgrade_curr,
                 set: {
                   id: rune.set_id,
                   label: runeSets[rune.set_id]
@@ -49,9 +52,9 @@ export class ImportJsonComponent {
                   value: rune.pri_eff[1]
                 },
                 prefix_stat: {
-                  id: rune.pri_eff[0],
-                  label: statEffect[rune.pri_eff[0]],
-                  value: rune.pri_eff[1]
+                  id: rune.prefix_eff[0],
+                  label: statEffect[rune.prefix_eff[0]],
+                  value: rune.prefix_eff[1]
                 },
                 secondary_stats: rune.sec_eff.map(stat => {
                   return {
@@ -59,10 +62,7 @@ export class ImportJsonComponent {
                     label: statEffect[stat[0]],
                     value: stat[1]
                   }
-                })
-                ,
-                base_rarity: 'common',
-                current_uprade: 0
+                }),
               }
             });
 
@@ -91,5 +91,9 @@ export class ImportJsonComponent {
     });
 
     return runes;
+  }
+
+  runeScoreCalc() {
+
   }
 }
